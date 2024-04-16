@@ -1,140 +1,73 @@
-[![Build Status](https://travis-ci.com/abixen/abixen-platform.svg?branch=master)](https://travis-ci.com/abixen/abixen-platform)
-
-# What is Abixen Platform
-
-## Short introduce
-Abixen Platform is a microservices based software platform for building enterprise applications. 
-The main goal of the project is a creation of functionalities through creating particular microservices and integrating by provided CMS.
-
-All you have to do in order to create an entirely new functionality is to implement a new, separated microservice.
-Now you can register it in Abixen Platform and start using by delivered configuration wizards and CMS.
-There is also an Abixen Platform API, which allows you to accelerate the process of new microservices creation.
-
-A sample application built using Abixen Platform can look like in the following screenshot:
-![Abixen Platform Demo](documentation-image/abixen-platform-demo.png "Abixen Platform Demo")
-
-
-Abixen Platform's organizational division consists of pages and modules. 
-User with appropriate privileges can create any page and select a layout. 
-Finally, add to the page instances of modules deployed on Abixen Platform. 
-Each of the modules can have many instances, configured by different parameters.
-
-One of the most important mechanisms built-in into Abixen Platform is own security system, which
-ensures a full control access to pages, modules and even the data displayed and used by the modules.
-		
-Abixen Platform delivers out of the box functional microservices. 
-		
-**Business Intelligence Service is one of the delivered functional modules.**
-
-This module allows to do reporting charts and tables. A business administrator can create the charts and feed it by a following flow:
-* Create a database connection to one of supported databases (H2, MySQL, PostgreSQL, Oracle, MSSQL). Instead of database connection, there is an opportunity to use an excel or CSV file
-* Create a data source using above database connection or file.
-* Add a new business intelligence instance on a page
-* Configure a chart series selecting a data source
-* Set permissions for particular users' roles
-
-**Web Content Service is another one of the delivered functional modules.**
-
-This module allows to do articles. A business administrator can create articles in two ways:
-* Simple Web Content (just fill out a simple form with rich text editor)
-* Advanced Web Content (using structures and templates)
-		
-The spectrum of possible modules developer can create is unlimited. 
-There can be e.g. modules showing data in a tabular way, modules of data entry, 
-where users enter data, edit and present.
-		
-The main architectural emphasis was placed on the rapid creation of new modules. 
-Therefore, an original architecture has been implemented based on microservices, which
-allows to create modules functionally independent of the other elements. 
-When programmer creates a module, compiles only his module and his microservice. 
-This provides a tremendous time saving comparing to monolithic systems.
-
-## Technology stack
-![Abixen Platform Microservices Technology Stack](documentation-image/abixen-platform-microservices-technology-stack.png "Abixen Platform Microservices Technology Stack")
-
-## Architecture overview
-One of the biggest advantage is the architecture based on microservices concept. 
-With loosely coupled components, it opens up a possibility of a efficient division of work between development teams and for a simple and inexpensive system maintenance.
-Creating a new module, a new functionality, a developer must not interfere with the existing source code. He can create a new microservice, being a separate spring boot application. 
-Then, implementing necessary interfaces achieves opportunity to integrate the newly created microservice with Abixen Platform structure.
-Finally, a business administrator may use it over the platform.
-Abixen Platform supplies out of the box a few functional modules closed in the Business Intelligence Service and in the Web Content Service.
-This is a good example, how to create the own microservice.
-Mentioned services provide mainly visualisation functionalities, such as charts, micro charts, KPIs. As well as a web content management, such as templates, structures, articles.
-However opportunities to develop data entry modules are still opened!
-![Abixen Platform Microservices Architecture](documentation-image/abixen-platform-microservices-architecture.png "Abixen Platform Microservices Architecture")
-
-## AWS compatible
-Abixen Platform is fully compatible with AWS cloud and utilizes the following services:
-
-   * **EC2** - used as a base for hosts running docker in ECS Cluster
-   * **ALB** - modern version of load balancer aligned with microservices architecture topology
-   * **ECS** - container orchestrator and scheduler for all services running as docker containers
-   * **ECR** - private container registry for docker images
-   * **Route53** - allows to use internal dns names for communication between microservices
-   * **CloudWatch** - used as a central monitoring and logging
-   * **Elasticache** - used internally by Abixen Platform components
-   * **RDS** - database store for all components
-   * **SES** - used for email communication
-   
-![Abixen Platform AWS Deployment diagram](documentation-image/abixen-platform-on-aws.png "Abixen Platform AWS Deployment diagram")
-
-## Logging and monitoring
-All containers from Abixen Platform send logs to [Elasticsearch](https://www.elastic.co) via [Logstash](https://www.elastic.co/products/logstash). You can use [Kibana's](https://www.elastic.co/products/kibana) interface as well.
-All metrics are exposed on each component with [Jolokia](http://jolokia.org) and fetched from there using [Telegraf](https://influxdata.com/telegraf-correlate-log-metrics-data-performance-bottlenecks/). They are sent to [InfluxDB](https://influxdata.com/) and are accessible on [Grafana](https://grafana.net) dashboards
-![Abixen Platform Logging and Monitoring](documentation-image/abixen-docker-infrastructure.png "Abixen Platform Logging and Monitoring")
-
-# History
-
-Abixen Platform has been started in March 2015 by Mariusz Kumor (<a href="https://www.linkedin.com/in/mariuszkumor">see LinkedIn profile</a>). 
-Preliminary the main idea was to learn more about microservices, 
-Spring Cloud stuff and extend knowledge about AngularJS.
-The project was developing to December 2015 at free time.
-Substantial part of the time involved analysis and prototypes. 
-Since that day it took some time but now, 
-in October 2016 he decided to publish the source code on GitHub. 
-As well Mariusz Kumor decided to begin further development.
-The great motivation were flattering words of his friends, 
-also some companies about the project and its ideas.
-
-# Give a Star ⭐
-Creating this product I put emphasis primarily on quality and value for end users. It is also very important for me that the software is built based on the cutting-edge technologies (but in the same time stable ones) and the best design patterns and practices. As you can guess, it takes a lot of time, and the product is open source - so everyone can use the effects of my and other Contributors work for free. If you like this project, learned something or you are using it, please give it a star ⭐. This is the best motivation for me to continue on. Thank you!
-
-# Share It
-There are not many similar open source products like this type of application. If in your opinion this repository makes a difference and deserves it - please share it with your friends, mates and on social networks. I will be very grateful.
-
-# Known issues
-
-There are some known issues. We work on fixes and improvements.
-
-* Not all translations are done
-* Multi Visualisation Service needs some user interface improvement and optimization. Also needs more tests.
-* In some places CSS is not perfect
-* There is a small technical debt (non functional issue)
-
-# Get it started
-The documentation is available under https://github.com/abixen/abixen-platform/wiki page.
-
-# We are looking for experienced Contributors
-Are you good at Java and / or frontend technologies like AngularJS, CSS, HTML?
-Or maybe are you an UI/UX expert and you are willing to enhance Abixen Platform's design?
-Would you like to join geek guys? 
-If so, we are ready to do short but powerful training for you from Abixen Platform.
-After the training you will be able to develop together with us the amazing Abixen Platform.
-Just mail us **info@platform.abixen.com**. In a message please let us know, why would you like to contribute and what could you bring to the project.
-
-# [How to contribute to the repository](CONTRIBUTING.md)
-
-# License
-
-Copyright (c) 2010-present Abixen Systems. All rights reserved.
- 
-This library is free software; you can redistribute it and/or modify it under
-the terms of the GNU Lesser General Public License as published by the Free
-Software Foundation; either version 2.1 of the License, or (at your option)
-any later version.
-
-This library is distributed in the hope that it will be useful, but WITHOUT
-ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
-FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
-details.
+<div class="Box-sc-g0xbh4-0 bJMeLZ js-snippet-clipboard-copy-unpositioned" data-hpc="true"><article class="markdown-body entry-content container-lg" itemprop="text"><p dir="auto"><a href="https://travis-ci.com/abixen/abixen-platform" rel="nofollow"><img src="https://camo.githubusercontent.com/e59fe1a70aed3424b2e1a266dd1fcb11318e888b8fb9272e37f3148d669f3ce8/68747470733a2f2f7472617669732d63692e636f6d2f61626978656e2f61626978656e2d706c6174666f726d2e7376673f6272616e63683d6d6173746572" alt="构建状态" data-canonical-src="https://travis-ci.com/abixen/abixen-platform.svg?branch=master" style="max-width: 100%;"></a></p>
+<div class="markdown-heading" dir="auto"><h1 tabindex="-1" class="heading-element" dir="auto"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">什么是 Abixen 平台</font></font></h1><a id="user-content-what-is-abixen-platform" class="anchor" aria-label="永久链接：Abixen 平台是什么" href="#what-is-abixen-platform"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<div class="markdown-heading" dir="auto"><h2 tabindex="-1" class="heading-element" dir="auto"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">简短介绍</font></font></h2><a id="user-content-short-introduce" class="anchor" aria-label="永久链接：简短介绍" href="#short-introduce"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Abixen Platform 是一个基于微服务的软件平台，用于构建企业应用程序。该项目的主要目标是通过创建特定的微服务并通过提供的 CMS 进行集成来创建功能。</font></font></p>
+<p dir="auto"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">为了创建一个全新的功能，您所要做的就是实现一个新的、独立的微服务。现在您可以在 Abixen 平台中注册并通过提供的配置向导和 CMS 开始使用。还有一个 Abixen 平台 API，可让您加速新微服务的创建过程。</font></font></p>
+<p dir="auto"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">使用 Abixen 平台构建的示例应用程序如下图所示：
+</font></font><a target="_blank" rel="noopener noreferrer" href="/abixen/abixen-platform/blob/master/documentation-image/abixen-platform-demo.png"><img src="/abixen/abixen-platform/raw/master/documentation-image/abixen-platform-demo.png" alt="Abixen 平台演示" title="Abixen 平台演示" style="max-width: 100%;"></a></p>
+<p dir="auto"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Abixen 平台的组织划分由页面和模块组成。具有适当权限的用户可以创建任何页面并选择布局。最后，添加Abixen平台上部署的模块的页面实例。每个模块可以有许多实例，由不同的参数配置。</font></font></p>
+<p dir="auto"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Abixen 平台内置的最重要的机制之一是自己的安全系统，它确保对页面、模块甚至模块显示和使用的数据的完全控制访问。</font></font></p>
+<p dir="auto"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Abixen 平台提供开箱即用的功能性微服务。</font></font></p>
+<p dir="auto"><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">商业智能服务是交付的功能模块之一。</font></font></strong></p>
+<p dir="auto"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">该模块允许制作报告图表和表格。业务管理员可以创建图表并通过以下流程提供图表：</font></font></p>
+<ul dir="auto">
+<li><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">创建与受支持的数据库之一（H2、MySQL、PostgreSQL、Oracle、MSSQL）的数据库连接。可以使用 Excel 或 CSV 文件来代替数据库连接</font></font></li>
+<li><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">使用上述数据库连接或文件创建数据源。</font></font></li>
+<li><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">在页面上添加新的商业智能实例</font></font></li>
+<li><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">配置图表系列选择数据源</font></font></li>
+<li><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">为特定用户角色设置权限</font></font></li>
+</ul>
+<p dir="auto"><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Web内容服务是交付的另一个功能模块。</font></font></strong></p>
+<p dir="auto"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">该模块允许做文章。业务管理员可以通过两种方式创建文章：</font></font></p>
+<ul dir="auto">
+<li><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">简单的网页内容（只需使用富文本编辑器填写简单的表格）</font></font></li>
+<li><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">高级网页内容（使用结构和模板）</font></font></li>
+</ul>
+<p dir="auto"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">开发人员可以创建的模块范围是无限的。例如，可以有以表格方式显示数据的模块、数据输入模块，用户在其中输入数据、编辑和呈现。</font></font></p>
+<p dir="auto"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">主要架构重点放在新模块的快速创建上。因此，基于微服务实现了原始架构，它允许创建功能独立于其他元素的模块。当程序员创建模块时，仅编译他的模块和他的微服务。与单片系统相比，这可以节省大量时间。</font></font></p>
+<div class="markdown-heading" dir="auto"><h2 tabindex="-1" class="heading-element" dir="auto"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">技术栈</font></font></h2><a id="user-content-technology-stack" class="anchor" aria-label="永久链接：技术栈" href="#technology-stack"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto"><a target="_blank" rel="noopener noreferrer" href="/abixen/abixen-platform/blob/master/documentation-image/abixen-platform-microservices-technology-stack.png"><img src="/abixen/abixen-platform/raw/master/documentation-image/abixen-platform-microservices-technology-stack.png" alt="Abixen平台微服务技术栈" title="Abixen平台微服务技术栈" style="max-width: 100%;"></a></p>
+<div class="markdown-heading" dir="auto"><h2 tabindex="-1" class="heading-element" dir="auto"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">架构概述</font></font></h2><a id="user-content-architecture-overview" class="anchor" aria-label="永久链接：架构概述" href="#architecture-overview"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">最大的优势之一是基于微服务概念的架构。通过松散耦合的组件，它为开发团队之间的有效分工以及简单且廉价的系统维护提供了可能性。创建新模块、新功能时，开发人员不得干扰现有源代码。他可以创建一个新的微服务，作为一个单独的 Spring Boot 应用程序。然后，实现必要的接口就有机会将新创建的微服务与 Abixen 平台结构集成。最后，业务管理员可以通过平台使用它。 Abixen 平台提供了一些开箱即用的功能模块，这些功能模块封闭在商业智能服务和 Web 内容服务中。这是一个很好的例子，说明如何创建自己的微服务。提到的服务主要提供可视化功能，例如图表、微型图表、KPI。以及网页内容管理，例如模板、结构、文章。然而，开发数据输入模块的机会仍然存在！
+</font></font><a target="_blank" rel="noopener noreferrer" href="/abixen/abixen-platform/blob/master/documentation-image/abixen-platform-microservices-architecture.png"><img src="/abixen/abixen-platform/raw/master/documentation-image/abixen-platform-microservices-architecture.png" alt="Abixen 平台微服务架构" title="Abixen 平台微服务架构" style="max-width: 100%;"></a></p>
+<div class="markdown-heading" dir="auto"><h2 tabindex="-1" class="heading-element" dir="auto"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">AWS 兼容</font></font></h2><a id="user-content-aws-compatible" class="anchor" aria-label="永久链接：AWS 兼容" href="#aws-compatible"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Abixen平台与AWS云完全兼容，并利用以下服务：</font></font></p>
+<ul dir="auto">
+<li><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">EC2</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> - 用作 ECS 集群中运行 docker 的主机的基础</font></font></li>
+<li><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">ALB</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> - 与微服务架构拓扑保持一致的现代版本负载均衡器</font></font></li>
+<li><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">ECS</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> - 作为 docker 容器运行的所有服务的容器编排器和调度程序</font></font></li>
+<li><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">ECR</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> - docker 镜像的私有容器注册表</font></font></li>
+<li><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Route53</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> - 允许使用内部 DNS 名称在微服务之间进行通信</font></font></li>
+<li><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">CloudWatch</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> - 用作中央监控和日志记录</font></font></li>
+<li><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Elasticache</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> - 由 Abixen 平台组件内部使用</font></font></li>
+<li><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">RDS</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> - 所有组件的数据库存储</font></font></li>
+<li><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">SES</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> - 用于电子邮件通信</font></font></li>
+</ul>
+<p dir="auto"><a target="_blank" rel="noopener noreferrer" href="/abixen/abixen-platform/blob/master/documentation-image/abixen-platform-on-aws.png"><img src="/abixen/abixen-platform/raw/master/documentation-image/abixen-platform-on-aws.png" alt="Abixen 平台 AWS 部署图" title="Abixen 平台 AWS 部署图" style="max-width: 100%;"></a></p>
+<div class="markdown-heading" dir="auto"><h2 tabindex="-1" class="heading-element" dir="auto"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">记录和监控</font></font></h2><a id="user-content-logging-and-monitoring" class="anchor" aria-label="永久链接：日志记录和监控" href="#logging-and-monitoring"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Abixen 平台的所有容器都</font><font style="vertical-align: inherit;">通过</font><a href="https://www.elastic.co/products/logstash" rel="nofollow"><font style="vertical-align: inherit;">Logstash将日志发送到</font></a></font><a href="https://www.elastic.co" rel="nofollow"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Elasticsearch</font></font></a><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">。您</font><font style="vertical-align: inherit;">也</font><font style="vertical-align: inherit;">可以使用</font><a href="https://www.elastic.co/products/kibana" rel="nofollow"><font style="vertical-align: inherit;">Kibana 的界面。所有指标都通过</font></a><a href="http://jolokia.org" rel="nofollow"><font style="vertical-align: inherit;">Jolokia</font></a><font style="vertical-align: inherit;">公开在每个组件上，并使用</font><a href="https://influxdata.com/telegraf-correlate-log-metrics-data-performance-bottlenecks/" rel="nofollow"><font style="vertical-align: inherit;">Telegraf</font></a><font style="vertical-align: inherit;">从那里获取</font><font style="vertical-align: inherit;">。它们被发送到</font><a href="https://influxdata.com/" rel="nofollow"><font style="vertical-align: inherit;">InfluxDB</font></a><font style="vertical-align: inherit;">并可在</font><a href="https://grafana.net" rel="nofollow"><font style="vertical-align: inherit;">Grafana</font></a><font style="vertical-align: inherit;">仪表板上
+访问</font></font><a href="https://www.elastic.co/products/logstash" rel="nofollow"><font style="vertical-align: inherit;"></font></a><font style="vertical-align: inherit;"></font><a href="https://www.elastic.co/products/kibana" rel="nofollow"><font style="vertical-align: inherit;"></font></a><font style="vertical-align: inherit;"></font><a href="http://jolokia.org" rel="nofollow"><font style="vertical-align: inherit;"></font></a><font style="vertical-align: inherit;"></font><a href="https://influxdata.com/telegraf-correlate-log-metrics-data-performance-bottlenecks/" rel="nofollow"><font style="vertical-align: inherit;"></font></a><font style="vertical-align: inherit;"></font><a href="https://influxdata.com/" rel="nofollow"><font style="vertical-align: inherit;"></font></a><font style="vertical-align: inherit;"></font><a href="https://grafana.net" rel="nofollow"><font style="vertical-align: inherit;"></font></a><font style="vertical-align: inherit;"></font><a target="_blank" rel="noopener noreferrer" href="/abixen/abixen-platform/blob/master/documentation-image/abixen-docker-infrastructure.png"><img src="/abixen/abixen-platform/raw/master/documentation-image/abixen-docker-infrastructure.png" alt="Abixen 平台日志记录和监控" title="Abixen 平台日志记录和监控" style="max-width: 100%;"></a></p>
+<div class="markdown-heading" dir="auto"><h1 tabindex="-1" class="heading-element" dir="auto"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">历史</font></font></h1><a id="user-content-history" class="anchor" aria-label="永久链接：历史" href="#history"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Abixen 平台由 Mariusz Kumor 于 2015 年 3 月启动（</font></font><a href="https://www.linkedin.com/in/mariuszkumor" rel="nofollow"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">参见 LinkedIn 个人资料</font></font></a><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">）。最初的主要想法是了解更多有关微服务、Spring Cloud 的内容并扩展有关 AngularJS 的知识。该项目在空闲时间一直开发到 2015 年 12 月。大部分时间涉及分析和原型。从那天起，他花了一些时间，但现在，2016 年 10 月，他决定在 GitHub 上发布源代码。 Mariusz Kumor 也决定开始进一步开发。最大的动力是他的朋友以及一些公司对这个项目及其想法的奉承之词。</font></font></p>
+<div class="markdown-heading" dir="auto"><h1 tabindex="-1" class="heading-element" dir="auto"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">给个星星⭐</font></font></h1><a id="user-content-give-a-star-" class="anchor" aria-label="永久链接：给一颗星⭐" href="#give-a-star-"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">在创建这个产品时，我主要强调最终用户的质量和价值。对我来说也非常重要的是，该软件是基于尖端技术（但同时稳定的技术）和最佳设计模式和实践构建的。正如您可以猜到的，这需要花费大量时间，并且该产品是开源的 - 因此每个人都可以免费使用我和其他贡献者作品的效果。如果您喜欢这个项目，学到了一些东西或者正在使用它，请给它一个星⭐。这是我继续前进的最好动力。谢谢你！</font></font></p>
+<div class="markdown-heading" dir="auto"><h1 tabindex="-1" class="heading-element" dir="auto"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">分享它</font></font></h1><a id="user-content-share-it" class="anchor" aria-label="永久链接：分享" href="#share-it"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">像这种类型的应用程序类似的开源产品并不多。如果您认为这个存储库有所作为并且值得 - 请与您的朋友、伙伴和社交网络上分享。我将非常感激。</font></font></p>
+<div class="markdown-heading" dir="auto"><h1 tabindex="-1" class="heading-element" dir="auto"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">已知的问题</font></font></h1><a id="user-content-known-issues" class="anchor" aria-label="永久链接：已知问题" href="#known-issues"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">有一些已知问题。我们致力于修复和改进。</font></font></p>
+<ul dir="auto">
+<li><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">并非所有翻译都已完成</font></font></li>
+<li><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">多可视化服务需要一些用户界面改进和优化。还需要更多的测试。</font></font></li>
+<li><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">CSS有些地方并不完美</font></font></li>
+<li><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">存在少量技术债务（非功能问题）</font></font></li>
+</ul>
+<div class="markdown-heading" dir="auto"><h1 tabindex="-1" class="heading-element" dir="auto"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">开始吧</font></font></h1><a id="user-content-get-it-started" class="anchor" aria-label="永久链接：开始吧" href="#get-it-started"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">该文档可在</font></font><a href="https://github.com/abixen/abixen-platform/wiki"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">https://github.com/abixen/abixen-platform/wiki</font></font></a><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">页面下找到。</font></font></p>
+<div class="markdown-heading" dir="auto"><h1 tabindex="-1" class="heading-element" dir="auto"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">我们正在寻找经验丰富的贡献者</font></font></h1><a id="user-content-we-are-looking-for-experienced-contributors" class="anchor" aria-label="永久链接：我们正在寻找经验丰富的贡献者" href="#we-are-looking-for-experienced-contributors"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">您擅长 Java 和/或 AngularJS、CSS、HTML 等前端技术吗？或者您是 UI/UX 专家并且愿意增强 Abixen 平台的设计？你想加入极客行列吗？如果是这样，我们已准备好通过 Abixen 平台为您提供简短但有力的培训。培训结束后，您将能够与我们一起开发令人惊叹的 Abixen 平台。只需发邮件给我们</font></font><strong><a href="mailto:info@platform.abixen.com"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">info@platform.abixen.com</font></font></a></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">。请在留言中告诉我们，您为什么愿意做出贡献以及您能为该项目带来什么。</font></font></p>
+<div class="markdown-heading" dir="auto"><h1 tabindex="-1" class="heading-element" dir="auto"><a href="/abixen/abixen-platform/blob/master/CONTRIBUTING.md"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">如何为存储库做出贡献</font></font></a></h1><a id="user-content-how-to-contribute-to-the-repository" class="anchor" aria-label="永久链接：如何为存储库做出贡献" href="#how-to-contribute-to-the-repository"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<div class="markdown-heading" dir="auto"><h1 tabindex="-1" class="heading-element" dir="auto"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">执照</font></font></h1><a id="user-content-license" class="anchor" aria-label="永久链接：许可证" href="#license"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">版权所有 (c) 2010 年至今 Abixen Systems。版权所有。</font></font></p>
+<p dir="auto"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">该库是免费软件；您可以根据自由软件基金会发布的 GNU 较宽通用公共许可证的条款重新分发和/或修改它；许可证版本 2.1 或（由您选择）任何更高版本。</font></font></p>
+<p dir="auto"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">分发此库是希望它有用，但不提供任何保证；甚至没有适销性或特定用途适用性的默示保证。有关更多详细信息，请参阅 GNU 较宽通用公共许可证。</font></font></p>
+</article></div>
